@@ -1,0 +1,20 @@
+{
+  "name": "text-miner",
+  "version": "0.0.0",
+  "description": "text mining utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "text-mining",
+    "text-analytics"
+  ],
+  "author": "Philipp Burckhardt",
+  "license": "MIT",
+  "dependencies": {
+    "natural": "^0.1.27",
+    "underscore": "^1.6.0",
+    "underscore.string": "^2.3.3"
+  }
+}
