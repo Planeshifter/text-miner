@@ -1,0 +1,39 @@
+module.exports = function(grunt) {
+
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
+  // Project configuration.
+  grunt.initConfig({
+    uglify: {
+      target1: {
+    	files: [{
+        src: 'src/corpus.js',
+        dest: 'build/corpus.min.js'
+    	},
+    	{
+    	src: 'src/dtm.js',
+    	dest: 'build/dtm.min.js'
+    	}]
+      }
+    },
+    jshint: {
+    	all: ['src/*.js','gruntfile.js']
+    },
+    concat: {
+        options: {
+          separator: ';',
+        },
+        dist: {
+          src: ['build/corpus.min.js','dtm.min.js'],
+          dest: 'build/text-miner.js',
+        },
+      },
+  });
+
+  // Define the default task
+  grunt.registerTask('default', ['uglify','jshint','concat']);
+};
