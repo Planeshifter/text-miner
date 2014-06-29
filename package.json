@@ -1,8 +1,12 @@
 {
   "name": "text-miner",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Planeshifter/text-miner.git"
+  },
   "description": "text mining utilities",
-  "main": "index.js",
+  "main": "build/text-miner.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +20,14 @@
     "natural": "^0.1.27",
     "underscore": "^1.6.0",
     "underscore.string": "^2.3.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^2.1.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jshint": "^2.5.1"
   }
 }

@@ -13,64 +13,87 @@ var natural = require('natural');
 
 var Corpus = function(docs){
 	
-	_corpus = {};
+	var self = this;
+
+	this.documents = docs;
 	
-	_corpus.documents = docs;
-	
-	_corpus.clean = function(){
-		_corpus.documents = _corpus.documents.map(function(doc){
+	this.clean = function(){
+		self.documents = self.documents.map(function(doc){
 			return _.clean(doc);
 		});
-		return _corpus;
+		return self;
 	};
 	
-	_corpus.trim = function(){
-		_corpus.documents = _corpus.documents.map(function(doc){
+	this.trim = function(){
+		self.documents = this.documents.map(function(doc){
 			return _.trim(doc);
 		});
-		return _corpus;
+		return self;
 	};
 	
-	_corpus.inspect = function(truncLength){
+	this.inspect = function(truncLength){
 		if (truncLength === undefined) truncLength = 200;
-		_corpus.documents.forEach(function(doc, index){
+		self.documents.forEach(function(doc, index){
 		 console.log("Document " + index + ":");
 		 console.log( _(doc).truncate(truncLength));
 		 console.log("\u2500 \u2500 \u2500 \u2500 \u2500");
 		});
 	};
 	
-	_corpus.toLower = function(){
-		_corpus.documents = _corpus.documents.map(function(doc){
+	this.toLower = function(){
+		self.documents = self.documents.map(function(doc){
 			return doc.toLowerCase();
 		});
-		return _corpus;
+		return self;
 	};
 	
-		_corpus.toUpper = function(){
-		_corpus.documents = _corpus.documents.map(function(doc){
+	this.toUpper = function(){
+		self.documents = self.documents.map(function(doc){
 			return doc.toUpperCase();
 		});
-		return _corpus;
+		return self;
 	};
 	
-	_corpus.stem = function(type){
-		_corpus.documents = _corpus.documents.map(function(doc){
+	this.stem = function(type){
+		self.documents = self.documents.map(function(doc){
 			if (type == "Lancaster")
 				return natural.LancasterStemmer.stem(doc);
 			else 
 				return natural.PorterStemmer.stem(doc);
 		});
-		return _corpus;
+		return self;
 	};
 			
-	_corpus.map = function(FUN){
-		_corpus.documents = _corpus.documents.map(FUN);
-		return _corpus;
+	this.map = function(FUN){
+		self.documents = _corpus.documents.map(FUN);
+		return self;
+	};
+	
+	this.removeWords = function(words, case_sensitive){
+		for (var doc = 0; doc < self.documents.length; doc++)
+			for (var i = 0; i < words.length; i++)
+				{
+				var options = case_sensitive ? "" : "i";
+				var myRegExp = new RegExp("\\b" + words[i] + "\\b", options);
+				self.documents[doc] = self.documents[doc].replace(myRegExp,"");
+				}
+			return self;
+		};
+		
+	this.removeInterpunctuation = function(){
+		self.documents = self.documents.map(function(doc){
+			return doc.replace(/[\!\?\.,;-]/g, " ");
+		});
+		return self;
+	};
+	
+	this.stripWhitespace = function(){
+		self.documents = self.documents.map(function(doc){
+			return doc.replace(/ +/g, " ");
+		});
+		return self;
 	};
 			
-	return  _corpus;
 };
 
-
-module.exports = Corpus;
+exports.Corpus = Corpus;

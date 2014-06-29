@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Project configuration.
   grunt.initConfig({
@@ -28,12 +29,18 @@ module.exports = function(grunt) {
           separator: ';',
         },
         dist: {
-          src: ['build/corpus.min.js','dtm.min.js'],
+          src: ['build/corpus.min.js','build/dtm.min.js'],
           dest: 'build/text-miner.js',
         },
+        },
+    watch: {
+        	target1: {
+        	files: "src/*.js",
+        	tasks: ["jshint"]
+        	},
       },
   });
 
   // Define the default task
-  grunt.registerTask('default', ['uglify','jshint','concat']);
+  grunt.registerTask('default', ['uglify','jshint','concat','watch']);
 };
