@@ -17,6 +17,7 @@ var Corpus = function(docs){
 
 	this.documents = docs;
 	
+	// strips extra whitespace from docs
 	this.clean = function(){
 		self.documents = self.documents.map(function(doc){
 			return _.clean(doc);
@@ -87,9 +88,9 @@ var Corpus = function(docs){
 		return self;
 	};
 	
-	this.stripWhitespace = function(){
+	this.removeNewlines = function(){
 		self.documents = self.documents.map(function(doc){
-			return doc.replace(/ +/g, " ");
+			return doc.replace(/\r?\n|\r/g, " ");
 		});
 		return self;
 	};

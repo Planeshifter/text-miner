@@ -18,6 +18,10 @@ module.exports = function(grunt) {
     	{
     	src: 'src/dtm.js',
     	dest: 'build/dtm.min.js'
+    	},
+    	{
+    	src: 'src/stopwords.js',
+    	dest: 'build/stopwords.min.js'
     	}]
       }
     },
@@ -29,7 +33,7 @@ module.exports = function(grunt) {
           separator: ';',
         },
         dist: {
-          src: ['build/corpus.min.js','build/dtm.min.js'],
+          src: ['build/corpus.min.js','build/dtm.min.js','build/stopwords.min.js'],
           dest: 'build/text-miner.js',
         },
         },
