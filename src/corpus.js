@@ -13,6 +13,10 @@ var natural = require('natural');
 
 var Corpus = function(docs){
 	
+	if (!(this instanceof Corpus)){
+		return new Corpus(docs);
+	}
+	
 	var self = this;
 
 	this.documents = docs;
