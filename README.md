@@ -121,8 +121,15 @@ The number of distinct words appearing in the documents
 
 ### Methods 
 
-#### `findFreqTerms`
+#### `findFreqTerms(n)`
 
-#### `removeSparseWords`
+Returns all terms in alphabetical ordering which appear `n` or more times in the corpus. The return value is an array of objects of the form
+`{word: "<word>", count: <number>}`. 
 
-#### `weighting`
+#### `removeSparseWords(percent)`
+
+Remove all words from the document-term matrix which appear in less than `percent` of the documents. 
+
+#### `weighting(fun)`
+
+Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
