@@ -98,6 +98,10 @@ var Corpus = function(docs){
 		});
 		return self;
 	};
+
+	this.removeDuplicateWords = function(){
+    
+	};
 			
 };
 
