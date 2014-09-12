@@ -78,7 +78,7 @@ var Corpus = function(docs){
 		for (var doc = 0; doc < self.documents.length; doc++)
 			for (var i = 0; i < words.length; i++)
 				{
-				var options = case_sensitive ? "" : "i";
+				var options = case_sensitive ? "g" : "gi";
 				var myRegExp = new RegExp("\\b" + words[i] + "\\b", options);
 				self.documents[doc] = self.documents[doc].replace(myRegExp,"");
 				}
