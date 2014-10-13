@@ -1,3 +1,6 @@
+[![NPM version](https://badge.fury.io/js/text-miner.svg)](http://badge.fury.io/js/text-miner)
+[![Build Status](https://travis-ci.org/Planeshifter/text-miner.svg)](https://travis-ci.org/Planeshifter/text-miner)
+
 text-miner
 ==========
 
