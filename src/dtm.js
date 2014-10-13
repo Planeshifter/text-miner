@@ -35,6 +35,7 @@ var Terms = function(corpus){
 	var _processDoc = function(doc){
 		
 		var wordArray = doc.split(" ");
+		console.log(wordArray)
 		var words = [];
 		
 		for (var i = 0; i < wordArray.length; i++){

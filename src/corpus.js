@@ -82,7 +82,7 @@ var Corpus = function(docs){
 				var myRegExp = new RegExp("\\b" + words[i] + "\\b", options);
 				self.documents[doc] = self.documents[doc].replace(myRegExp,"");
 				}
-			return self;
+		return self;
 		};
 		
 	this.removeInterpunctuation = function(){
@@ -101,6 +101,10 @@ var Corpus = function(docs){
 
 	this.removeDuplicateWords = function(){
     
+	};
+
+	this.removeDigits = function(){
+
 	};
 			
 };
