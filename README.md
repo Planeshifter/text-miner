@@ -26,7 +26,7 @@ The fundamental data type in the `text-miner` module is the *Corpus*. An instanc
 and provides several methods to interact with this collection and perform post-processing tasks such as stemming,
 stopword removal etc.
 
-A new corpus is created by calling the constructor 
+A new corpus is created by calling the constructor
 
 ```
 var my_corpus = new Corpus([]),
@@ -35,22 +35,26 @@ var my_corpus = new Corpus([]),
 where `[]` is an array of text documents which form the data of the corpus. The class supports function chaining, such that mutliple methods
 can be invoked after each other, e.g.
 
-``` 
+```
 my_corpus
 	.trim()
 	.toLower()
 	.inspect();
-```	
+```
 
 The following methods and properties are part of the Corpus class:
 
 ### Methods
 
+#### `addDoc(doc)`
+
+#### `addDocs(docs)`
+
 #### `clean()`
 Strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
 
 #### `inspect(truncLength)`
-Displays the contents of all documents. The optional parameter `trunLength` determines after how many characters a document 
+Displays the contents of all documents. The optional parameter `trunLength` determines after how many characters a document
 is truncated.
 
 #### `map(fun)`
@@ -58,14 +62,14 @@ Applies the function supplied to `fun` to each document in the corpus and maps e
 function call.
 
 #### `removeInterpunctuation()`
-Removes interpunctuation characters (! ? . , ; -) from all documents. 
+Removes interpunctuation characters (! ? . , ; -) from all documents.
 
 #### `removeNewlines()`
 Removes newline characters (\n) from all documents.
 
 #### `removeWords(words)`
 Removes all words in the supplied `words` array from all documents. This function is usually invoked to remove stopwords. For convenience,
-the *text-miner* package ships with a list of stopwords for different languages. These are stored in the 
+the *text-miner* package ships with a list of stopwords for different languages. These are stored in the
 `STOPWORDS` object of the module.
 
 Currently, stopwords for the following languages are included:
@@ -83,6 +87,10 @@ As a concrete example, we could remove all english stopwords from corpus `my_cor
 my_corpus.removeWords(tm.STOPWORDS.EN)
 ```
 
+#### `removeDigits()`
+
+#### `removeDuplicateWords()`
+
 #### `stem(type)`
 Performs stemming of the words in each document. Two stemmers are supported: Porter and Lancaster. The former is the default
 option. Passing "Lancaster" to the `type` parameter of the function ensured that the latter one is used.
@@ -94,7 +102,7 @@ Converts all characters in the documents to lower-case.
 Converts all characters in the documents to upper-case.
 
 #### `trim()`
-Strips off whitespace at the beginning and end of each document. 
+Strips off whitespace at the beginning and end of each document.
 
 ## Terms
 
@@ -120,18 +128,18 @@ is sparse, such that each entry which is undefined corresponds to a value of zer
 The number of documents in the term matrix
 
 #### nTerms
-The number of distinct words appearing in the documents 
+The number of distinct words appearing in the documents
 
-### Methods 
+### Methods
 
 #### `findFreqTerms(n)`
 
 Returns all terms in alphabetical ordering which appear `n` or more times in the corpus. The return value is an array of objects of the form
-`{word: "<word>", count: <number>}`. 
+`{word: "<word>", count: <number>}`.
 
 #### `removeSparseWords(percent)`
 
-Remove all words from the document-term matrix which appear in less than `percent` of the documents. 
+Remove all words from the document-term matrix which appear in less than `percent` of the documents.
 
 #### `weighting(fun)`
 
