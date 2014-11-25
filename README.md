@@ -48,7 +48,11 @@ The following methods and properties are part of the Corpus class:
 
 #### `addDoc(doc)`
 
+Add a single document to the corpus. Has to be a string. 
+
 #### `addDocs(docs)`
+
+Adds a collection of documents (in form of an array of strings) to the corpus. 
 
 #### `clean()`
 Strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
@@ -89,7 +93,7 @@ my_corpus.removeWords(tm.STOPWORDS.EN)
 
 #### `removeDigits()`
 
-#### `removeDuplicateWords()`
+Removes any digits occuring in the texts. 
 
 #### `stem(type)`
 Performs stemming of the words in each document. Two stemmers are supported: Porter and Lancaster. The former is the default
