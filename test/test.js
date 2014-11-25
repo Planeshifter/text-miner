@@ -65,14 +65,7 @@ describe("Corpus", function(){
       expect(corpus.removeNewlines().documents).to.include("I am a doc without a new line");
     });
   });
-  describe("Corpus:removeDuplicateWords()",function(){
-    it("removes all duplicate words", function(){
-      var corpus = new tm.Corpus(["I am doc with a double word word, see.", "I am a doc without a double word"]);
-      console.log(corpus.removeDuplicateWords().documents)
-      expect(corpus.removeDuplicateWords().documents).to.include("I am doc with a double word  , see.");
-      expect(corpus.removeDuplicateWords().documents).to.include("I am a doc without a double word");
-    });
-  });
+
   describe("Corpus:removeDigits()",function(){
     it("removes all digits", function(){
       var corpus = new tm.Corpus(["I am doc 1", "I am doc 12, ahh, 2"]);
@@ -90,5 +83,22 @@ describe("Document-Term-Matrix",function(){
     expect(dtm).to.be.instanceof(tm.Terms);
     expect(dtm).to.have.property("nDocs");
     expect(dtm).to.have.property("nTerms");
+  });
+
+  describe("fill_zeros()", function(){
+    var dtm = new tm.Terms(my_corpus);
+    it("all non-assigned elements are set to zero", function(){
+      expect(dtm.fill_zeros()).to.be.instanceof(tm.Terms);
+
+      check_zeros = function(dtm){
+        for (var doc = 0; doc < dtm.length; doc++){
+          for (var word = 0; word < dtm[0].length; word++){
+            if (dtm[doc][word] == undefined) return false
+          }
+        }
+        return true
+      }
+      expect(check_zeros(dtm.dtm)).to.be.ok;
+    })
   });
 });

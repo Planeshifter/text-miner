@@ -29,6 +29,7 @@ var Terms = function(corpus){
 				if (self.dtm[doc][word] === undefined) self.dtm[doc][word] = 0;
 			}
 		}
+		return self;
 	};
 
 	var _processDoc = function(doc){
@@ -107,6 +108,7 @@ var Terms = function(corpus){
 		self.dtm = fun(self.dtm);
 		return self;
 	};
+
 	// initialization
 	(function(){
 		var documents = corpus.documents;

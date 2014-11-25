@@ -128,11 +128,6 @@ var Corpus = function(docs){
 		return self;
 	};
 
-	this.removeDuplicateWords = function(){
-
-		return self;
-	};
-
 	this.removeDigits = function(){
 		self.documents = self.documents.map(function(doc){
 			return doc.replace(/\d/g,"");
