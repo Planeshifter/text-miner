@@ -135,6 +135,12 @@ var Corpus = function(docs){
 		return self;
 	};
 
+	this.removeInvalidCharacters = function(){
+		self.documetns = self.documents.map(function(doc){
+			return doc.replace(/\uFFFD/g, '');
+		});
+	};
+
 };
 
 exports.Corpus = Corpus;
