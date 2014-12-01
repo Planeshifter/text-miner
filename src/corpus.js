@@ -139,6 +139,7 @@ var Corpus = function(docs){
 		self.documetns = self.documents.map(function(doc){
 			return doc.replace(/\uFFFD/g, '');
 		});
+		return self;
 	};
 
 };
