@@ -87,7 +87,6 @@ var Terms = function(corpus){
 				var doc = self.dtm[d];
 				if (doc !== undefined && doc[w] !== undefined){
 					counter++;
-					console.log("counter hochgezaehl");
 				}
 			}
 			if (counter / self.dtm.length < percent){
