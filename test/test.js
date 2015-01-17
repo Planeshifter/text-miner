@@ -28,7 +28,7 @@ describe("Corpus", function(){
   describe("Corpus:clean()", function(){
     it("correctly cleans documents", function(){
       var my_corpus = new tm.Corpus(["I am a  document  with whitespaces"]);
-      expect(my_corpus.clean().documents[0]).to.be.equal("I am a document with whitespaces")
+      expect(my_corpus.clean().documents[0]).to.be.equal("I am a document with whitespaces");
     });
   });
   describe("Corpus:trim()", function(){
@@ -42,7 +42,7 @@ describe("Corpus", function(){
     it("converts all docs to upper case", function(){
       expect(case_corpus.toUpper().documents).to.include("I AM DOC 1");
       expect(case_corpus.toUpper().documents).to.include("I AM DOC 2");
-    })
+    });
   });
   describe("Corpus:toLower()",function(){
     it("converts all docs to lower case", function(){
@@ -89,16 +89,40 @@ describe("Document-Term-Matrix",function(){
     var dtm = new tm.Terms(my_corpus);
     it("all non-assigned elements are set to zero", function(){
       expect(dtm.fill_zeros()).to.be.instanceof(tm.Terms);
-
-      check_zeros = function(dtm){
+      var check_zeros = function(dtm){
         for (var doc = 0; doc < dtm.length; doc++){
           for (var word = 0; word < dtm[0].length; word++){
-            if (dtm[doc][word] == undefined) return false
+            if (dtm[doc][word] === undefined) return false;
           }
         }
-        return true
-      }
+        return true;
+      };
       expect(check_zeros(dtm.dtm)).to.be.ok;
-    })
+    });
+  });
+
+  describe("findFreqTerms()", function(){
+    var dtm = new tm.Terms(my_corpus);
+    var sortedWordArray = dtm.findFreqTerms(2);
+    it("returns array", function(){
+      expect(sortedWordArray).to.be.instanceof(Array);
+    });
+    it("contains objects like {word: 'and', count: 3}", function(){
+      sortedWordArray.forEach(function(w){
+        expect(w).to.have.property("word");
+        expect(w).to.have.property("count");
+      });
+    });
+    it("is sorted in decreasing order", function(){
+      sortedWordArray .reduce(function(a,b){
+        expect(a.count).to.be.at.least(b.count);
+        return b;
+      });
+    });
+    it("contains only words with counts larger than n", function(){
+      sortedWordArray.forEach(function(w){
+        expect(w.count).to.be.above(3);
+      });
+    });
   });
 });
