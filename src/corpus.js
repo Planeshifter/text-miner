@@ -9,9 +9,12 @@ _.mixin(_.str.exports());
 // All functions, include conflict, will be available through _.str object
 _.str.include('Underscore.string', 'string'); // => true
 
-var natural = require('natural');
+var natural = null;
 
 var Corpus = function(docs){
+
+	// load natural module
+	if (!natural) natural = require('natural');
 
 	// if nothing passed, treat docs as empty array
 	docs = docs || [];
