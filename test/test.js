@@ -121,7 +121,7 @@ describe("Document-Term-Matrix",function(){
     });
     it("contains only words with counts larger than n", function(){
       sortedWordArray.forEach(function(w){
-        expect(w.count).to.be.above(3);
+        expect(w.count).to.be.above(1);
       });
     });
   });
