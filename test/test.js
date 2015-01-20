@@ -125,4 +125,19 @@ describe("Document-Term-Matrix",function(){
       });
     });
   });
+
+  describe("removeSparseTerms()", function(){
+    var my_corpus = new tm.Corpus(["I am a document","I am a second document","third document"]);
+    var dtm = new tm.Terms(my_corpus);
+    dtm.removeSparseTerms(0.5);
+    it("should remove sparse terms from vocabulary", function(){
+      expect(dtm.vocabulary).to.have.members(["I","am","a","document"]);
+      expect(dtm.vocabulary).to.not.have.members(["second","third"]);
+    });
+    it("should remove respective entries from document-term matrix", function(){
+      console.log(dtm.dtm.length)
+       expect(dtm.dtm.length).to.be.equal(3); // number of docs
+       expect(dtm.dtm[0].length).to.be.equal(4); // number of words in vocabulary
+    });
+  });
 });

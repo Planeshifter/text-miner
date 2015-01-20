@@ -81,6 +81,7 @@ var Terms = function(corpus){
 
 	this.removeSparseTerms = function(percent){
 
+		var flaggedForRemoval = [];
 		for (var w = 0; w < self.vocabulary.length; w++){
 			var counter = 0;
 			for (var d = 0; d < self.dtm.length; d++){
@@ -90,16 +91,17 @@ var Terms = function(corpus){
 				}
 			}
 			if (counter / self.dtm.length < percent){
-				 self.vocabulary = self.vocabulary.splice(w, 1);
-
-				 for (var d2 = 0; d2 < self.dtm.length; d2++){
-					 if (self.dtm[d2] !== undefined){
-						 self.dtm[d2] = self.dtm[d2].splice(w, 0.1);
-					 }
-				 }
-				}
+				flaggedForRemoval.push(w);
+			}
 		}
 
+		for (var i = flaggedForRemoval.length - 1 ; i >= 0; i--){
+			var word_to_be_removed = flaggedForRemoval[i];
+			self.vocabulary.splice(word_to_be_removed, 1);
+			for (var d2 = 0; d2 < self.dtm.length; d2++){
+				self.dtm[d2].splice(word_to_be_removed, 1);
+			}
+		}
 		return self;
 	};
 
