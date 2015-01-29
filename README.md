@@ -153,7 +153,7 @@ Apply a weighting scheme to the entries of the document-term matrix. The `weight
 
 Namespace object which bundles several other utility functions.
 
-### expandContractions(str)
+### `expandContractions(str)`
 
 Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to 
 "do not". The resulting string is returned. 
