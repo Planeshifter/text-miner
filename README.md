@@ -148,3 +148,12 @@ Remove all words from the document-term matrix which appear in less than `percen
 #### `weighting(fun)`
 
 Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
+
+## Utils
+
+Namespace object which bundles several other utility functions.
+
+### expandContractions(str)
+
+Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to 
+"do not". The resulting string is returned. 
