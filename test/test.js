@@ -141,3 +141,16 @@ describe("Document-Term-Matrix",function(){
     });
   });
 });
+
+describe("utility functions in util", function(){
+  describe("expandContractions(str)", function(){
+    it("should expand all contracted words in string str", function(){
+      var expandedPhrase = tm.utils.expandContractions("I don't believe in miracles");
+      expect(expandedPhrase).to.be.equal("I do not believe in miracles");
+    });
+    it("can handle case in which no contractions appear", function(){
+      var expandedPhrase = tm.utils.expandContractions("Today is a good day, yeah!");
+      expect(expandedPhrase).to.be.equal("Today is a good day, yeah!");
+    });
+  });
+});

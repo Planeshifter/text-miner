@@ -11,18 +11,26 @@ module.exports = function(grunt) {
   grunt.initConfig({
     uglify: {
       target1: {
-    	files: [{
-        src: 'src/corpus.js',
-        dest: 'build/corpus.min.js'
-    	},
-    	{
-    	src: 'src/dtm.js',
-    	dest: 'build/dtm.min.js'
-    	},
-    	{
-    	src: 'src/stopwords.js',
-    	dest: 'build/stopwords.min.js'
-    	}]
+      	files: [{
+            src: 'src/corpus.js',
+            dest: 'build/corpus.min.js'
+        	},
+        	{
+        	src: 'src/dtm.js',
+        	dest: 'build/dtm.min.js'
+        	},
+        	{
+        	src: 'src/stopwords.js',
+        	dest: 'build/stopwords.min.js'
+          },
+          {
+            src: 'src/contractions.js',
+            dest: 'build/contractions.min.js'
+          },
+          {
+            src: 'src/utils.js',
+            dest: 'build/utils.min.js'
+          },]
       }
     },
     jshint: {
@@ -33,7 +41,7 @@ module.exports = function(grunt) {
           separator: ';',
         },
         dist: {
-          src: ['build/corpus.min.js','build/dtm.min.js','build/stopwords.min.js'],
+          src: ['build/corpus.min.js','build/dtm.min.js','build/stopwords.min.js','build/contractions.min.js','build/utils.min.js'],
           dest: 'build/text-miner.js',
         },
         },
