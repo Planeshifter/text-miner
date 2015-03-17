@@ -19,9 +19,9 @@
   "author": "Philipp Burckhardt",
   "license": "MIT",
   "dependencies": {
-    "underscore": "~1.7.0",
-    "natural": "~0.1.28",
-    "underscore.string": "~2.3.3"
+    "underscore": "~1.8.2",
+    "natural": "~0.2.1",
+    "underscore.string": "~3.0.3"
   },
   "devDependencies": {
     "chai": "^1.10.0",
