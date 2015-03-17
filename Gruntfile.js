@@ -14,9 +14,29 @@ module.exports = function(grunt) {
     uglify: {
       target1: {
       	files: [{
-            src: 'src/text-miner.js',
-            dest: 'build/text-miner.min.js'
-        	}]
+						src: 'src/text-miner.js',
+						dest: 'build/text-miner.min.js'
+					},
+					{
+            src: 'src/corpus.js',
+            dest: 'build/corpus.js'
+        	},
+        	{
+        	src: 'src/dtm.js',
+        	dest: 'build/dtm.js'
+        	},
+        	{
+        	src: 'src/stopwords.js',
+        	dest: 'build/stopwords.js'
+          },
+          {
+            src: 'src/contractions.js',
+            dest: 'build/contractions.js'
+          },
+          {
+            src: 'src/utils.js',
+            dest: 'build/utils.js'
+          },]
       }
     },
     jshint: {
@@ -25,7 +45,7 @@ module.exports = function(grunt) {
     watch: {
         	target1: {
         	files: "src/*.js",
-        	tasks: ['uglify','jshint','watch']
+        	tasks: ['uglify','jshint','concat','watch']
         	},
       },
   });
