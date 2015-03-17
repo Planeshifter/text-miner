@@ -21,7 +21,7 @@
   "dependencies": {
     "underscore": "~1.7.0",
     "natural": "~0.1.28",
-    "underscore.string": "~2.3.3",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "chai": "^1.10.0",
