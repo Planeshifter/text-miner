@@ -29,7 +29,7 @@
     "istanbul": "^0.3.8",
     "jshint": "^2.6.3",
     "jshint-stylish": "^1.0.1",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
     "chai-as-promised": "^4.3.0",
     "grunt": "~0.4.5",
     "grunt-browserify": "^2.1.1",
