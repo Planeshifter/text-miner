@@ -118,4 +118,4 @@ var CONTRACTIONS = {
 		"you've": ["you have"]
 };
 
-exports.CONTRACTIONS = CONTRACTIONS;
+module.exports = CONTRACTIONS;

@@ -1,11 +1,14 @@
+'use strict';
+
+var CONTRACTIONS = require("./contractions.js");
+
 var expandContractions = function(str){
-  for (var key in CONTRACTIONS){
+  for (var key in CONTRACTIONS ){
     str = str.replace(new RegExp(key,"gi"), CONTRACTIONS[key][0]);
   }
   return str;
 };
 
-var utils = {};
-utils.expandContractions = expandContractions;
-
-exports.utils = utils;
+module.exports = {
+	'expandContractions': expandContractions
+};

@@ -1,3 +1,5 @@
+'use strict';
+
 var _  = require('underscore');
 
 // Import Underscore.string to separate object, because there are conflict functions (include, reverse, contains)
@@ -14,7 +16,9 @@ var natural = null;
 var Corpus = function(docs){
 
 	// load natural module
-	if (!natural) natural = require('natural');
+	if ( !natural ) {
+		natural = require('natural');
+	}
 
 	// if nothing passed, treat docs as empty array
 	docs = docs || [];
@@ -26,7 +30,7 @@ var Corpus = function(docs){
 	var self = this;
 
 	if (typeof docs === "string"){
-		docs = Array(docs);
+		docs = new Array(docs);
 		this.documents = docs;
 	} else if (Array.isArray(docs) === true && docs.every(function(doc){
 		return typeof doc === "string";})){
@@ -40,7 +44,9 @@ var Corpus = function(docs){
 		if (typeof doc === "string"){
 			self.documents.push(doc);
 		}
-		else throw new TypeError("Argument has to be a string");
+		else {
+			throw new TypeError("Argument has to be a string");
+		}
 	};
 
 	this.addDocs = function(docs){
@@ -69,7 +75,9 @@ var Corpus = function(docs){
 	};
 
 	this.inspect = function(truncLength){
-		if (truncLength === undefined) truncLength = 200;
+		if ( truncLength === undefined ){
+			truncLength = 200;
+		}
 		self.documents.forEach(function(doc, index){
 		 console.log("Document " + index + ":");
 		 console.log( _(doc).truncate(truncLength));
@@ -93,29 +101,31 @@ var Corpus = function(docs){
 
 	this.stem = function(type){
 		self.documents = self.documents.map(function(doc){
-			if (type == "Lancaster")
+			if( type === "Lancaster" ) {
 				return natural.LancasterStemmer.stem(doc);
-			else
+			} else {
 				return natural.PorterStemmer.stem(doc);
+			}
 		});
 		return self;
 	};
 
 	this.map = function(FUN){
-		self.documents = _corpus.documents.map(FUN);
+		self.documents = this.documents.map(FUN);
 		return self;
 	};
 
 	this.removeWords = function(words, case_sensitive){
-		for (var doc = 0; doc < self.documents.length; doc++)
+		for (var doc = 0; doc < self.documents.length; doc++) {
 			for (var i = 0; i < words.length; i++)
 				{
 				var options = case_sensitive ? "g" : "gi";
 				var myRegExp = new RegExp("\\b" + words[i] + "\\b", options);
 				self.documents[doc] = self.documents[doc].replace(myRegExp,"");
 				}
+			}
 		return self;
-		};
+	};
 
 	this.removeInterpunctuation = function(){
 		self.documents = self.documents.map(function(doc){
@@ -147,4 +157,4 @@ var Corpus = function(docs){
 
 };
 
-exports.Corpus = Corpus;
+module.exports = Corpus;

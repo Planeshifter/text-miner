@@ -1,6 +1,10 @@
+'use strict';
+
+var _ = require('underscore');
+
 var Terms = function(corpus){
 
-	if(!(this instanceof Terms)){
+	if( !(this instanceof Terms) ){
 		return new Terms(corpus);
 	}
 
@@ -26,7 +30,9 @@ var Terms = function(corpus){
 	this.fill_zeros = function(){
 		for (var doc = 0; doc < self.dtm.length; doc++){
 			for (var word = 0; word < self.dtm[0].length; word++){
-				if (self.dtm[doc][word] === undefined) self.dtm[doc][word] = 0;
+				if (self.dtm[doc][word] === undefined) {
+					self.dtm[doc][word] = 0;
+				}
 			}
 		}
 		return self;
@@ -70,7 +76,9 @@ var Terms = function(corpus){
 			var obj = {};
 			obj.word = self.vocabulary[w];
 			obj.count = wordCount;
-			if (wordCount >= n) wordArray.push(obj);
+			if ( wordCount >= n ) {
+				wordArray.push(obj);
+			}
 		}
 
 		var sortedWordArray = _.sortBy(wordArray, function(obj){
@@ -128,22 +136,27 @@ function weightTfIdf(dtm){
 	for (var w = 0; w < dtm[0].length; w++){
 		var count = 0;
 		for (var d = 0; d < dtm.length; d++){
-			if (dtm[d][w] !== undefined) count++;
+			if (dtm[d][w] !== undefined) {
+				count++;
+			}
 		}
 		word_doc_freq.push(count);
 	}
 
-	for (var doc = 0; doc < dtm.length; doc++)
-		{
+	for (var doc = 0; doc < dtm.length; doc++) {
 		for (var word = 0; word < dtm[0].length; word++){
-		var idf = Math.log(dtm.length) - Math.log(1 + word_doc_freq[word]);
+			var idf = Math.log(dtm.length) - Math.log(1 + word_doc_freq[word]);
 
-		if (dtm[doc][word] !== undefined) dtm[doc][word] = dtm[doc][word] * idf;
+			if (dtm[doc][word] !== undefined) {
+				dtm[doc][word] = dtm[doc][word] * idf;
+			}
 		}
-		}
+	}
 
 	return dtm;
 }
 
-exports.Terms = Terms;
-exports.weightTfIdf = weightTfIdf;
+module.exports = {
+	'Terms': Terms,
+	'weightTfIdf': weightTfIdf
+};

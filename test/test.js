@@ -1,4 +1,6 @@
-var tm = require("../build/text-miner.js");
+'use strict';
+
+var tm = require("../src/text-miner.js");
 var chai = require("chai");
 var chaiAsPromised = require("chai-as-promised");
 var expect = chai.expect;
@@ -92,7 +94,9 @@ describe("Document-Term-Matrix",function(){
       var check_zeros = function(dtm){
         for (var doc = 0; doc < dtm.length; doc++){
           for (var word = 0; word < dtm[0].length; word++){
-            if (dtm[doc][word] === undefined) return false;
+            if ( dtm[doc][word] === undefined ) {
+              return false;
+            }
           }
         }
         return true;
@@ -135,7 +139,6 @@ describe("Document-Term-Matrix",function(){
       expect(dtm.vocabulary).to.not.have.members(["second","third"]);
     });
     it("should remove respective entries from document-term matrix", function(){
-      console.log(dtm.dtm.length)
        expect(dtm.dtm.length).to.be.equal(3); // number of docs
        expect(dtm.dtm[0].length).to.be.equal(4); // number of words in vocabulary
     });

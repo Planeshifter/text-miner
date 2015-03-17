@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
   // Load the plugin that provides the "uglify" task.
@@ -12,47 +14,22 @@ module.exports = function(grunt) {
     uglify: {
       target1: {
       	files: [{
-            src: 'src/corpus.js',
-            dest: 'build/corpus.min.js'
-        	},
-        	{
-        	src: 'src/dtm.js',
-        	dest: 'build/dtm.min.js'
-        	},
-        	{
-        	src: 'src/stopwords.js',
-        	dest: 'build/stopwords.min.js'
-          },
-          {
-            src: 'src/contractions.js',
-            dest: 'build/contractions.min.js'
-          },
-          {
-            src: 'src/utils.js',
-            dest: 'build/utils.min.js'
-          },]
+            src: 'src/text-miner.js',
+            dest: 'build/text-miner.min.js'
+        	}]
       }
     },
     jshint: {
     	all: ['src/*.js','gruntfile.js']
     },
-    concat: {
-        options: {
-          separator: ';',
-        },
-        dist: {
-          src: ['build/corpus.min.js','build/dtm.min.js','build/stopwords.min.js','build/contractions.min.js','build/utils.min.js'],
-          dest: 'build/text-miner.js',
-        },
-        },
     watch: {
         	target1: {
         	files: "src/*.js",
-        	tasks: ['uglify','jshint','concat','watch']
+        	tasks: ['uglify','jshint','watch']
         	},
       },
   });
 
   // Define the default task
-  grunt.registerTask('default', ['uglify','jshint','concat','watch']);
+  grunt.registerTask('default', ['uglify','jshint','watch']);
 };
