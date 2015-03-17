@@ -1,10 +1,12 @@
-[![NPM version](https://badge.fury.io/js/text-miner.svg)](http://badge.fury.io/js/text-miner)
-[![Build Status](https://travis-ci.org/Planeshifter/text-miner.svg)](https://travis-ci.org/Planeshifter/text-miner)
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Dependencies][dependencies-image]][dependencies-url]
 
 text-miner
 ==========
 
-text mining utilities for node.js
+> text mining utilities for node.js
 
 # Introduction
 
@@ -148,3 +150,34 @@ Remove all words from the document-term matrix which appear in less than `percen
 #### `weighting(fun)`
 
 Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
+
+## Utils
+
+Namespace object which bundles several other utility functions.
+
+### `expandContractions(str)`
+
+Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to 
+"do not". The resulting string is returned. 
+
+## Unit Tests
+
+Run tests via the command `npm test`
+
+---
+## License
+
+[MIT license](http://opensource.org/licenses/MIT).
+
+[npm-image]: https://badge.fury.io/js/text-miner.svg
+[npm-url]: http://badge.fury.io/js/text-miner
+
+[travis-image]: https://travis-ci.org/Planeshifter/text-miner.svg
+[travis-url]: https://travis-ci.org/Planeshifter/text-miner
+
+[coveralls-image]: https://img.shields.io/coveralls/Planeshifter/text-miner/master.svg
+[coveralls-url]: https://coveralls.io/r/Planeshifter/text-miner?branch=master
+
+[dependencies-image]: http://img.shields.io/david/Planeshifter/text-miner.svg
+[dependencies-url]: https://david-dm.org/Planeshifter/text-miner
+

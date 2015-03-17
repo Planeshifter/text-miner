@@ -9,6 +9,8 @@
   "main": "build/text-miner.min.js",
   "scripts": {
 		 "prepublish": "grunt uglify",
+  "main": "build/text-miner.js",
+  "scripts": {
      "test": "./node_modules/.bin/mocha",
      "test-cov": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
      "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coveralls"
