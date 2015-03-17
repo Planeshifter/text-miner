@@ -7,8 +7,10 @@
   },
   "description": "text mining utilities",
   "main": "build/text-miner.js",
-  "scripts": {
-    "test": "mocha test"
+  "scripts": { 
+     "test": "./node_modules/.bin/mocha",
+     "test-cov": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
+     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coveralls"
   },
   "keywords": [
     "text-mining",
@@ -20,16 +22,20 @@
     "underscore": "~1.7.0",
     "natural": "~0.1.28",
     "underscore.string": "~2.3.3",
-    "mocha": "~1.21.5"
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "chai-as-promised": "^4.1.1",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.8",
+    "jshint": "^2.6.3",
+    "jshint-stylish": "^1.0.1",
+    "mocha": "^2.1.0"
+    "chai-as-promised": "^4.3.0",
     "grunt": "~0.4.5",
     "grunt-browserify": "^2.1.1",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "jshint": "^2.5.1"
   }
