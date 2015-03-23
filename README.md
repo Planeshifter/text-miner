@@ -48,32 +48,32 @@ The following methods and properties are part of the Corpus class:
 
 ### Methods
 
-#### `addDoc(doc)`
+#### `.addDoc(doc)`
 
 Add a single document to the corpus. Has to be a string.
 
-#### `addDocs(docs)`
+#### `.addDocs(docs)`
 
 Adds a collection of documents (in form of an array of strings) to the corpus.
 
-#### `clean()`
+#### `.clean()`
 Strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
 
-#### `inspect(truncLength)`
+#### `.inspect(truncLength)`
 Displays the contents of all documents. The optional parameter `trunLength` determines after how many characters a document
 is truncated.
 
-#### `map(fun)`
+#### `.map(fun)`
 Applies the function supplied to `fun` to each document in the corpus and maps each document to the result of its respective
 function call.
 
-#### `removeInterpunctuation()`
+#### `.removeInterpunctuation()`
 Removes interpunctuation characters (! ? . , ; -) from all documents.
 
-#### `removeNewlines()`
+#### `.removeNewlines()`
 Removes newline characters (\n) from all documents.
 
-#### `removeWords(words[, case_sensitive])`
+#### `.removeWords(words[, case_sensitive])`
 Removes all words in the supplied `words` array from all documents. This function is usually invoked to remove stopwords. For convenience,
 the *text-miner* package ships with a list of stopwords for different languages. These are stored in the
 `STOPWORDS` object of the module.
@@ -96,21 +96,25 @@ my_corpus.removeWords(tm.STOPWORDS.EN)
 The second (optional) parameter of the function `case_sensitive` expects a Boolean indicating whether to ignore cases or not.
 The default value is `false`.
 
-#### `removeDigits()`
+#### `.removeDigits()`
 
 Removes any digits occuring in the texts.
 
-#### `stem(type)`
+#### `.removeInvalidCharacters()`
+
+Removes all characters which are unknown or unrepresentable in Unicode.
+
+#### `.stem(type)`
 Performs stemming of the words in each document. Two stemmers are supported: Porter and Lancaster. The former is the default
 option. Passing "Lancaster" to the `type` parameter of the function ensured that the latter one is used.
 
-#### `toLower()`
+#### `.toLower()`
 Converts all characters in the documents to lower-case.
 
-#### `toUpper()`
+#### `.toUpper()`
 Converts all characters in the documents to upper-case.
 
-#### `trim()`
+#### `.trim()`
 Strips off whitespace at the beginning and end of each document.
 
 ## Terms
@@ -125,32 +129,32 @@ An instance of `Terms` has the following properties:
 
 ### Properties
 
-#### vocabulary
+#### `.vocabulary`
 An array holding all the words occuring in the corpus, in order corresponding to the row entries of the document-term matrix.
 
-#### dtm
+#### `.dtm`
 The document-term matrix, implemented as a nested array in JavaScript. Columns correspond to individual documents, while each row index
 corresponds to the respective word in `vocabulary`. Each entry of `dtm` holds the number of counts the word appears in the respective documents. The array
 is sparse, such that each entry which is undefined corresponds to a value of zero.
 
-#### nDocs
+#### `.nDocs`
 The number of documents in the term matrix
 
-#### nTerms
+#### `.nTerms`
 The number of distinct words appearing in the documents
 
 ### Methods
 
-#### `findFreqTerms(n)`
+#### `.findFreqTerms(n)`
 
 Returns all terms in alphabetical ordering which appear `n` or more times in the corpus. The return value is an array of objects of the form
 `{word: "<word>", count: <number>}`.
 
-#### `removeSparseTerms(percent)`
+#### `.removeSparseTerms(percent)`
 
 Remove all words from the document-term matrix which appear in less than `percent` of the documents.
 
-#### `weighting(fun)`
+#### `.weighting(fun)`
 
 Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
 
@@ -158,7 +162,7 @@ Apply a weighting scheme to the entries of the document-term matrix. The `weight
 
 Namespace object which bundles several other utility functions.
 
-### `expandContractions(str)`
+### `.expandContractions(str)`
 
 Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to
 "do not". The resulting string is returned.
