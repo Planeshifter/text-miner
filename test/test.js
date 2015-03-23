@@ -86,9 +86,27 @@ describe("Corpus", function tests() {
 
     describe("Corpus:trim()", function tests() {
 
-        it("correctly trims documents",function test() {
+        it("correctly trims documents", function test() {
             var my_corpus = new tm.Corpus([" I am a  document which needs trimming "]);
             expect(my_corpus.trim().documents[0]).to.be.equal("I am a  document which needs trimming");
+        });
+
+    });
+
+    describe("Corpus:inspect()", function tests() {
+
+        it("logs documents to console", function test() {
+            var my_corpus = new tm.Corpus([" I am a  document which wants to be logged "]);
+            my_corpus.inspect();
+        });
+
+    });
+
+    describe("Corpus:map()", function tests() {
+
+        it("allows a function to be applied to all docs", function test() {
+            var my_corpus = new tm.Corpus(["UPPERCASE"]);
+            expect(my_corpus.map(function(x){ return x.toLowerCase(); }).documents[0]).to.be.equal("uppercase");
         });
 
     });
@@ -157,7 +175,7 @@ describe("Corpus", function tests() {
 
     });
 
-    describe("Corpus:removeWords()",function tests() {
+    describe("Corpus:removeWords()", function tests() {
 
         it("removes the supplied words (npt case-sensitive)", function test() {
             var corpus = new tm.Corpus(["The king is dead"]);
@@ -167,6 +185,15 @@ describe("Corpus", function tests() {
         it("removes the supplied words (case-sensitive)", function test() {
             var corpus = new tm.Corpus(["The king is dead"]);
             expect(corpus.removeWords( ["King"], false ).documents).to.include("The king is dead");
+        });
+
+    });
+
+    describe("Corpus:removeInvalidCharacters()", function tests() {
+
+        it("removes non-Unicode characters", function test(){
+            var corpus = new tm.Corpus(["� � �"]);
+            expect(corpus.removeInvalidCharacters().documents).to.include("  ");
         });
 
     });
@@ -265,6 +292,20 @@ describe("Document-Term-Matrix",function tests() {
         });
 
     });
+
+    describe("weighting()", function tests() {
+
+        var my_corpus = new tm.Corpus(["I am a document","I am a second document","third document"]);
+        var terms = new tm.Terms(my_corpus);
+
+        it( "weights dtm according to supplied weighting function", function test() {
+            var actual = terms.weighting(tm.weightTfIdf).dtm;
+            var expected = tm.weightTfIdf(terms.dtm);
+            expect(actual).to.be.equal(expected);
+        });
+
+    });
+
 });
 
 describe("weightTfIdf function", function tests() {

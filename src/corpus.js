@@ -149,7 +149,7 @@ var Corpus = function(docs){
 	};
 
 	this.removeInvalidCharacters = function(){
-		self.documetns = self.documents.map(function(doc){
+		self.documents = self.documents.map(function(doc){
 			return doc.replace(/\uFFFD/g, '');
 		});
 		return self;
