@@ -38,41 +38,108 @@ describe("Corpus", function tests() {
 
     });
 
-    it("allows a document to be added via addDoc", function test() {
-
-        var my_corpus = new tm.Corpus();
-        my_corpus.addDoc("Insert a document");
-        expect(my_corpus.documents).to.have.length(1);
-
-    });
-
-    it( 'should throw an error if not provided a string', function test() {
-        var my_corpus = new tm.Corpus();
+    it( 'should throw an error if constructor is provided a non-array', function test() {
         var values = [
             5,
-            null,
-            undefined,
-            NaN,
             true,
-            [],
-            {},
-            function(){}
+            null,
+            NaN,
+            function(){},
+            {}
         ];
-
         for ( var i = 0; i < values.length; i++ ) {
-            expect( badValue( values[i] ) ).to.throw( Error );
+            expect( badValue( values[i] ) ).to.throw( TypeError );
         }
         function badValue( value ) {
             return function() {
-                my_corpus.addDoc( value );
+                tm.Corpus( value );
             };
         }
     });
 
-    it("allows multiple documents to be added via addDocs", function test() {
-        var my_corpus = new tm.Corpus();
-        my_corpus.addDocs(["Insert a document","And another one"]);
-        expect(my_corpus.documents).to.have.length(2);
+
+    describe("Corpus:addDocs()", function tests() {
+
+        it("allows a single document to be added", function test() {
+
+            var my_corpus = new tm.Corpus();
+            my_corpus.addDoc("Insert a document");
+            expect(my_corpus.documents).to.have.length(1);
+
+        });
+
+        it( 'should throw an error if not provided a string', function test() {
+            var my_corpus = new tm.Corpus();
+            var values = [
+                5,
+                null,
+                undefined,
+                NaN,
+                true,
+                [],
+                {},
+                function(){}
+            ];
+
+            for ( var i = 0; i < values.length; i++ ) {
+                expect( badValue( values[i] ) ).to.throw( Error );
+            }
+            function badValue( value ) {
+                return function() {
+                    my_corpus.addDoc( value );
+                };
+            }
+        });
+
+    });
+
+    describe("Corpus:addDocs()", function tests() {
+
+        it("allows multiple documents to be added", function test() {
+            var my_corpus = new tm.Corpus();
+            my_corpus.addDocs(["Insert a document","And another one"]);
+            expect(my_corpus.documents).to.have.length(2);
+        });
+
+        it( 'should throw an error if addDocs is provided a non-array', function test() {
+            var my_corpus = new tm.Corpus();
+            var values = [
+                '5',
+                5,
+                true,
+                undefined,
+                null,
+                NaN,
+                function(){},
+                {}
+            ];
+            for ( var i = 0; i < values.length; i++ ) {
+                expect( badValue( values[i] ) ).to.throw( TypeError );
+            }
+            function badValue( value ) {
+                return function() {
+                    my_corpus.addDocs( value );
+                };
+            }
+        });
+
+        it( 'should throw an error if addDocs is provided an array not only consisting of Strings', function test() {
+            var my_corpus = new tm.Corpus();
+            var values = [
+                ["a", 3, 2],
+                [NaN, "c", 0],
+                [null, null, null]
+            ];
+            for ( var i = 0; i < values.length; i++ ) {
+                expect( badValue( values[i] ) ).to.throw( TypeError );
+            }
+            function badValue( value ) {
+                return function() {
+                    my_corpus.addDocs( value );
+                };
+            }
+        });
+
     });
 
     describe("Corpus:clean()", function tests() {

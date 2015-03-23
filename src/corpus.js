@@ -21,7 +21,10 @@ var Corpus = function(docs){
 	}
 
 	// if nothing passed, treat docs as empty array
-	docs = docs || [];
+
+	if ( docs === undefined ) {
+		docs = [];
+	}
 
 	if (!(this instanceof Corpus)){
 		return new Corpus(docs);
@@ -33,7 +36,7 @@ var Corpus = function(docs){
 		docs = new Array(docs);
 		this.documents = docs;
 	} else if (Array.isArray(docs) === true && docs.every(function(doc){
-		return typeof doc === "string";})){
+		return typeof doc === "string";})) {
 		this.documents = docs;
 	} else {
 		throw new TypeError("Constructor expects Array of documents");
