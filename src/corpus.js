@@ -115,11 +115,11 @@ var Corpus = function(docs){
 		return self;
 	};
 
-	this.removeWords = function(words, case_sensitive){
+	this.removeWords = function(words, case_insensitive){
 		for (var doc = 0; doc < self.documents.length; doc++) {
 			for (var i = 0; i < words.length; i++)
 				{
-				var options = case_sensitive ? "g" : "gi";
+				var options = case_insensitive ? "gi" : "g";
 				var myRegExp = new RegExp("\\b" + words[i] + "\\b", options);
 				self.documents[doc] = self.documents[doc].replace(myRegExp,"");
 				}

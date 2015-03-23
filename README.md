@@ -73,7 +73,7 @@ Removes interpunctuation characters (! ? . , ; -) from all documents.
 #### `removeNewlines()`
 Removes newline characters (\n) from all documents.
 
-#### `removeWords(words)`
+#### `removeWords(words[, case_sensitive])`
 Removes all words in the supplied `words` array from all documents. This function is usually invoked to remove stopwords. For convenience,
 the *text-miner* package ships with a list of stopwords for different languages. These are stored in the
 `STOPWORDS` object of the module.
@@ -92,6 +92,9 @@ As a concrete example, we could remove all english stopwords from corpus `my_cor
 ```
 my_corpus.removeWords(tm.STOPWORDS.EN)
 ```
+
+The second (optional) parameter of the function `case_sensitive` expects a Boolean indicating whether to ignore cases or not.
+The default value is `false`.
 
 #### `removeDigits()`
 
@@ -157,8 +160,8 @@ Namespace object which bundles several other utility functions.
 
 ### `expandContractions(str)`
 
-Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to 
-"do not". The resulting string is returned. 
+Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to
+"do not". The resulting string is returned.
 
 ## Unit Tests
 
@@ -180,4 +183,3 @@ Run tests via the command `npm test`
 
 [dependencies-image]: http://img.shields.io/david/Planeshifter/text-miner.svg
 [dependencies-url]: https://david-dm.org/Planeshifter/text-miner
-
