@@ -42,6 +42,9 @@ var Corpus = function(docs){
 		throw new TypeError("Constructor expects Array of documents");
 	}
 
+	// hold meta information for documents
+	this.meta = [];
+
 	// adds new document to Corpus
 	this.addDoc = function(doc){
 		if (typeof doc === "string"){
@@ -82,9 +85,9 @@ var Corpus = function(docs){
 			truncLength = 200;
 		}
 		self.documents.forEach(function(doc, index){
-		 console.log("Document " + index + ":");
-		 console.log( _(doc).truncate(truncLength));
-		 console.log("\u2500 \u2500 \u2500 \u2500 \u2500");
+			console.log("Document " + index + ":");
+			console.log( _(doc).truncate(truncLength));
+			console.log("\u2500 \u2500 \u2500 \u2500 \u2500");
 		});
 	};
 

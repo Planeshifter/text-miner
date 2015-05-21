@@ -2,9 +2,9 @@
 
 var _ = require('underscore');
 
-var Terms = function(corpus){
+var Terms = function(corpus) {
 
-	if( !(this instanceof Terms) ){
+	if( !(this instanceof Terms) ) {
 		return new Terms(corpus);
 	}
 
@@ -13,14 +13,14 @@ var Terms = function(corpus){
 	this.vocabulary = [];
 	this.dtm = [];
 
-	Object.defineProperty(this,"nDocs",{
+	Object.defineProperty( this,"nDocs", {
 		get: function() {
 			return this.dtm.length;
 		},
 		enumerable: true
 	});
 
-	Object.defineProperty(this, "nTerms",{
+	Object.defineProperty( this, "nTerms", {
 		get: function() {
 			return this.vocabulary.length;
 		},
@@ -44,18 +44,16 @@ var Terms = function(corpus){
 		var words = [];
 
 		for (var i = 0; i < wordArray.length; i++){
-
 			var current_word = wordArray[i];
 			var index = self.vocabulary.indexOf(current_word);
 
-			if (index > -1){
+			if (index > -1) {
 					words[index] = words[index] + 1 || 1;
-				}
-				else{
+			} else {
 					words[self.vocabulary.length] = 1;
 					self.vocabulary.push(current_word);
-				}
 			}
+		}
 		self.dtm.push(words);
 	};
 
@@ -119,13 +117,13 @@ var Terms = function(corpus){
 	};
 
 	// initialization
-	(function(){
-		var documents = corpus.documents;
-		documents.forEach(_processDoc);
-		self.dtm.forEach(function(doc){
+	this.init = function( documents ) {
+		documents.forEach( _processDoc );
+		self.dtm.forEach( function(doc) {
 			doc.length = self.vocabulary.length; // ensure that all rows in dtm have same length
 		});
-	})();
+	};
+	self.init( corpus.documents );
 
 };
 
