@@ -31,11 +31,10 @@ stopword removal etc.
 A new corpus is created by calling the constructor
 
 ```
-var my_corpus = new Corpus([]),
+var my_corpus = new tm.Corpus([]);
 ```
 
-where `[]` is an array of text documents which form the data of the corpus. The class supports function chaining, such that mutliple methods
-can be invoked after each other, e.g.
+where `[]` is an array of text documents which form the data of the corpus. The class supports method chaining, such that mutliple methods can be invoked after each other, e.g.
 
 ```
 my_corpus
@@ -122,7 +121,7 @@ Strips off whitespace at the beginning and end of each document.
 We can pass a corpus to the constructor `Terms` in order to create a term-document-matrix
 
 ```
-var terms = new Terms(my_corpus);
+var terms = new tm.Terms(my_corpus);
 ```
 
 An instance of `Terms` has the following properties:
