@@ -87,7 +87,7 @@ var Terms = function( corpus ) {
 
 	this.removeSparseTerms = function( percent ) {
 
-		var flaggedForRemoval = [];
+		var flaggedForKeeping = [];
 		for ( var w = 0; w < self.vocabulary.length; w++ ) {
 			var counter = 0;
 			for ( var d = 0; d < self.dtm.length; d++ ){
@@ -96,18 +96,25 @@ var Terms = function( corpus ) {
 					counter++;
 				}
 			}
-			if ( counter / self.dtm.length < percent ) {
-				flaggedForRemoval.push(w);
+			if ( counter / self.dtm.length >= percent ) {
+				flaggedForKeeping.push(w);
 			}
 		}
 
-		for ( var i = flaggedForRemoval.length - 1 ; i >= 0; i-- ) {
-			var word_to_be_removed = flaggedForRemoval[i];
-			self.vocabulary.splice( word_to_be_removed, 1 );
-			for ( var d2 = 0; d2 < self.dtm.length; d2++ ) {
-				self.dtm[d2].splice( word_to_be_removed, 1 );
-			}
+		var newVocabulary = [];
+		for ( var i = 0; i < flaggedForKeeping.length; i++ ) {
+			newVocabulary.push( self.vocabulary[ flaggedForKeeping[i] ] );
 		}
+
+		for ( var d2 = 0; d2 < self.dtm.length; d2++ ) {
+			var newVec = [];
+			for ( var j = 0; j < flaggedForKeeping.length; j++ ) {
+				newVec.push( self.dtm[d2][ flaggedForKeeping[j] ] );
+			}
+			self.dtm[d2] = newVec;
+		}
+
+		self.vocabulary = newVocabulary;
 		return self;
 	};
 
