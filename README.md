@@ -157,6 +157,10 @@ Remove all words from the document-term matrix which appear in less than `percen
 
 Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
 
+#### `.fill_zeros()`
+
+Turn the document-term matrix `dtm` into a non-sparse matrix by replacing each value which is `undefined` by zero and save the result. 
+
 ## Utils
 
 Namespace object which bundles several other utility functions.
