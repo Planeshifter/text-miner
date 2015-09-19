@@ -1,5 +1,9 @@
+'use strict';
+
+// CONTRACTIONS //
+
 var CONTRACTIONS = {
-    "ain't": ["am not", "are not", "is not", "has not","have not"],
+		"ain't": ["am not", "are not", "is not", "has not","have not"],
 		"aren't": ["are no", "am not"],
 		"can't": ["cannot"],
 		"can't've": ["cannot have"],
@@ -117,5 +121,8 @@ var CONTRACTIONS = {
 		"you're": ["you are"],
 		"you've": ["you have"]
 };
+
+
+// EXPORTS //
 
 module.exports = CONTRACTIONS;

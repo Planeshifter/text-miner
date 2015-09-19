@@ -6,6 +6,5 @@ node_js:
 - 'iojs'
 before_install:
 - npm update -g npm
-- npm install -g grunt-cli
 after_script:
 - npm run coveralls

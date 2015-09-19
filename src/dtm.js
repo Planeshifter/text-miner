@@ -1,10 +1,22 @@
 'use strict';
 
+// MODULES //
+
 var _ = require( 'underscore' );
 
-var Terms = function( corpus ) {
 
-	if( !(this instanceof Terms) ) {
+// DOCUMENT-TERM MATRIX //
+
+/**
+* FUNCTION Terms( corpus )
+*	Creates a term-document matrix object.
+*
+* @constructor
+* @param {Object} corpus - an instance of class Corpus
+*/
+function Terms( corpus ) {
+
+	if( !( this instanceof Terms ) ) {
 		return new Terms(corpus);
 	}
 
@@ -13,7 +25,7 @@ var Terms = function( corpus ) {
 	this.vocabulary = [];
 	this.dtm = [];
 
-	Object.defineProperty( this,"nDocs", {
+	Object.defineProperty( this, "nDocs", {
 		get: function() {
 			return this.dtm.length;
 		},
@@ -38,7 +50,7 @@ var Terms = function( corpus ) {
 		return self;
 	};
 
-	var _processDoc = function( doc ) {
+	function _processDoc( doc ) {
 
 		var wordArray = doc.split( ' ' );
 		var words = [];
@@ -55,9 +67,9 @@ var Terms = function( corpus ) {
 			}
 		}
 		self.dtm.push(words);
-	};
+	}
 
-	var _wordFreq = function( wordIndex ) {
+	function _wordFreq( wordIndex ) {
 		var mapping = self.dtm.map( function( doc ) {
 			return doc[wordIndex] || 0;
 		});
@@ -65,7 +77,7 @@ var Terms = function( corpus ) {
 			return a + b;
 		});
 		return reducing;
-	};
+	}
 
 	this.findFreqTerms = function( n ) {
 		var wordArray = [];
@@ -139,35 +151,9 @@ var Terms = function( corpus ) {
 	};
 	self.init( corpus.documents );
 
-};
+} // end FUNCTION Terms()
 
-function weightTfIdf( dtm ) {
 
-	var word_doc_freq = [];
+// EXPORTS //
 
-	for ( var w = 0; w < dtm[0].length; w++ ) {
-		var count = 0;
-		for ( var d = 0; d < dtm.length; d++ ) {
-			if ( dtm[d][w] !== undefined ) {
-				count++;
-			}
-		}
-		word_doc_freq.push( count );
-	}
-
-	for ( var doc = 0; doc < dtm.length; doc++ ) {
-		for ( var word = 0; word < dtm[0].length; word++ ){
-			var idf = Math.log( dtm.length ) - Math.log( 1 + word_doc_freq[word] );
-			if ( dtm[doc][word] !== undefined ) {
-				dtm[doc][word] = dtm[doc][word] * idf;
-			}
-		}
-	}
-
-	return dtm;
-}
-
-module.exports = {
-	'Terms': Terms,
-	'weightTfIdf': weightTfIdf
-};
+module.exports = Terms;
