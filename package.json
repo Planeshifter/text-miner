@@ -22,16 +22,16 @@
   "author": "Philipp Burckhardt",
   "license": "MIT",
   "dependencies": {
-    "underscore": "~1.8.2",
     "natural": "~0.2.1",
-    "underscore.string": "~3.0.3"
+    "underscore": "~1.8.2",
+    "underscore.string": "^3.2.2"
   },
   "devDependencies": {
-    "chai": "^2.1.2",
+    "chai": "3.x.x",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.8",
     "jshint": "^2.6.3",
-    "jshint-stylish": "^1.0.1",
+    "jshint-stylish": "2.x.x",
     "mocha": "^2.1.0",
     "chai-as-promised": "^5.0.0"
   }
