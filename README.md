@@ -12,14 +12,14 @@ text-miner
 
 The text-miner package can be easily installed via npm:
 
-```
+``` bash
 npm install text-miner
 ```
 
 To require the module in a project, we can use the expression
 
-```
-var tm = require('text-miner);
+``` javascript
+var tm = require( 'text-miner' );
 ```
 
 ## Corpus
@@ -159,7 +159,7 @@ Apply a weighting scheme to the entries of the document-term matrix. The `weight
 
 #### `.fill_zeros()`
 
-Turn the document-term matrix `dtm` into a non-sparse matrix by replacing each value which is `undefined` by zero and save the result. 
+Turn the document-term matrix `dtm` into a non-sparse matrix by replacing each value which is `undefined` by zero and save the result.
 
 ## Utils
 
