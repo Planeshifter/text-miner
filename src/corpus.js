@@ -1,17 +1,26 @@
 'use strict';
 
-var _  = require( 'underscore' );
+// MODULES //
 
+var _  = require( 'underscore' );
 // Import Underscore.string to separate object, because there are conflict functions (include, reverse, contains)
 _.str = require( 'underscore.string' );
-
 // Mix in non-conflict functions to Underscore namespace if you want
 _.mixin( _.str.exports() );
-
 // All functions, include conflict, will be available through _.str object
 _.str.include( 'Underscore.string', 'string' ); // => true
 
-var natural = null;
+var isString = require( 'validate.io-string-primitive' );
+var isStringArray = require( 'validate.io-string-array' );
+var Doc = require( './document.js' );
+
+var natural = require( 'natural' );
+
+// FUNCTIONS //
+
+
+
+// CORPUS //
 
 /**
 * FUNCTION Corpus( [docs] )
@@ -21,53 +30,49 @@ var natural = null;
 * @param {String|Array} docs - string representing a single document or an array of documents
 */
 function Corpus( docs ) {
-
-	// load natural module
-	if ( !natural ) {
-		natural = require( 'natural' );
-	}
-
-	// if nothing passed, treat docs as empty array
-	if ( docs === undefined ) {
-		docs = [];
-	}
-
+	var self = this;
 	if ( !( this instanceof Corpus ) ) {
 		return new Corpus(docs);
 	}
 
-	var self = this;
+	this.init = function init( docs ) {
+		// If nothing is passed, treat docs as empty array...
+		if ( docs === undefined ) {
+			docs = [];
+		}
+		if ( isString( docs ) ) {
+			docs = [ new Doc( docs ) ];
+			this.documents = docs;
+		} else if ( isStringArray( docs ) ) {
+			this.documents = docs;
+		} else {
+			throw new TypeError( "Constructor expects an array of documents" );
+		}
+	};
 
-	if ( typeof docs === "string" ) {
-		docs = new Array(docs);
-		this.documents = docs;
-	} else if ( Array.isArray(docs) === true && docs.every( function(doc){
-		return typeof doc === "string";} ) ) {
-		this.documents = docs;
-	} else {
-		throw new TypeError("Constructor expects array of documents");
-	}
-
-	// hold meta information for documents
-	this.meta = [];
-
-	// adds new document to Corpus
+	// Adds a new document to the corpus:
 	this.addDoc = function addDoc( doc ) {
-		if (typeof doc === "string"){
-			self.documents.push(doc);
+		if ( isString( doc ) ) {
+			self.documents.push( new Doc( doc ) );
 		}
 		else {
-			throw new TypeError("Argument has to be a string");
+			throw new TypeError( 'Argument has to be a string' );
 		}
 	};
 
 	this.addDocs = function addDocs( docs ) {
-		if (Array.isArray(docs) === true && docs.every(function(doc){
-			return typeof doc === "string";
-		})){
-			self.documents = self.documents.concat(docs);
+		var arr;
+		var len;
+		var i;
+		if ( isStringArray( docs ) ) {
+			len = docs.length;
+			arr = new Array( len );
+			for ( i = 0; i < len; i++ ) {
+				arr[ i ] = new Doc( docs[ i ] );
+			}
+			self.documents = self.documents.concat( arr );
 		} else {
-			throw new TypeError("Parameter expects an array of strings");
+			throw new TypeError( 'Parameter expects an array of strings' );
 		}
 	};
 
@@ -113,11 +118,11 @@ function Corpus( docs ) {
 	};
 
 	this.stem = function stem( type ) {
-		self.documents = self.documents.map(function(doc){
-			if( type === "Lancaster" ) {
-				return natural.LancasterStemmer.stem(doc);
+		self.documents = self.documents.map( function( doc ) {
+			if ( type === "Lancaster" ) {
+				return natural.LancasterStemmer.stem( doc );
 			} else {
-				return natural.PorterStemmer.stem(doc);
+				return natural.PorterStemmer.stem( doc );
 			}
 		});
 		return self;
@@ -169,6 +174,7 @@ function Corpus( docs ) {
 		return self;
 	};
 
+	self.init( docs );
 } // end FUNCTION Corpus()
 
 
