@@ -2,9 +2,13 @@
 
 var tm = require( '../lib/index.js' );
 
-var corpus = new tm.Corpus( ["Hello  Mr DJ"," I am the king of the World!!! In these times, one can only hope for redemption"] );
+var corpus = new tm.Corpus( [
+	"Hello  Mr DJ",
+	" I am the king of the World!!!",
+	"In these times, one can only hope for redemption"
+] );
 
-var wordArr = corpus.clean()
+var filteredCorpus = corpus.clean()
 	.trim()
 	.toLower()
 	.removeWords( tm.STOPWORDS.EN )
@@ -17,7 +21,7 @@ var wordArr = corpus.clean()
 		}
 	});
 
-console.log( wordArr );
+console.log( filteredCorpus + '' );
 
 var dtm = new tm.Terms( corpus );
 
