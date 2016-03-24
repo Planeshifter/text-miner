@@ -1,10 +1,15 @@
 'use strict';
 
-var tm = require("../src/text-miner.js");
-var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
+// MODULES //
+
+var tm = require( '../lib/index.js' );
+var chai = require( 'chai' );
+var chaiAsPromised = require( 'chai-as-promised' );
 var expect = chai.expect;
-chai.use(chaiAsPromised);
+chai.use( chaiAsPromised );
+
+
+// TESTS //
 
 describe("Corpus", function tests() {
 
@@ -58,7 +63,7 @@ describe("Corpus", function tests() {
 	});
 
 
-	describe("Corpus:addDocs()", function tests() {
+	describe("Corpus:addDoc()", function tests() {
 
 		it("allows a single document to be added", function test() {
 

@@ -1,12 +1,12 @@
 'use strict';
 
-var tm = require( '../src/text-miner.js' );
+var tm = require( '../lib/index.js' );
 
-var corpus = new tm.Corpus([]);
+var corpus = new tm.Corpus( [] );
 
 corpus.addDoc( 'wat you cash money go to boots and cats and dogs with me' );
-corpus.removeWords( tm.STOPWORDS.EN) ;
+corpus.removeWords( tm.STOPWORDS.EN ) ;
 
-var terms = new tm.Terms(corpus);
+var terms = new tm.Terms( corpus );
 
 console.log( terms );

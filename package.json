@@ -6,7 +6,7 @@
     "url": "https://github.com/Planeshifter/text-miner.git"
   },
   "description": "text mining utilities",
-  "main": "src/text-miner.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "test-cov": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
@@ -28,6 +28,8 @@
     "natural": "~0.4.0",
     "underscore": "~1.8.2",
     "underscore.string": "^3.2.2",
+    "validate.io-array-like": "^1.0.1",
+    "validate.io-object": "^1.0.4",
     "validate.io-string-array": "^1.0.0",
     "validate.io-string-primitive": "^1.0.0"
   },
