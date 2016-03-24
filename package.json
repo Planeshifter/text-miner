@@ -19,12 +19,17 @@
     "dtm",
     "text-analysis"
   ],
-  "author": "Philipp Burckhardt",
+  "author": {
+    "name": "Philipp Burckhardt",
+    "email": "pburckhardt@outlook.com"
+  },
   "license": "MIT",
   "dependencies": {
-    "natural": "~0.2.1",
+    "natural": "~0.4.0",
     "underscore": "~1.8.2",
-    "underscore.string": "^3.2.2"
+    "underscore.string": "^3.2.2",
+    "validate.io-string-array": "^1.0.0",
+    "validate.io-string-primitive": "^1.0.0"
   },
   "devDependencies": {
     "chai": "3.x.x",
