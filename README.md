@@ -30,13 +30,13 @@ stopword removal etc.
 
 A new corpus is created by calling the constructor
 
-```
+``` javascript
 var my_corpus = new tm.Corpus([]);
 ```
 
 where `[]` is an array of text documents which form the data of the corpus. The class supports method chaining, such that mutliple methods can be invoked after each other, e.g.
 
-```
+``` javascript
 my_corpus
 	.trim()
 	.toLower()
