@@ -29,6 +29,7 @@
     "underscore": "~1.8.2",
     "underscore.string": "^3.2.2",
     "validate.io-array-like": "^1.0.1",
+    "validate.io-boolean-primitive": "^1.0.0",
     "validate.io-object": "^1.0.4",
     "validate.io-object-array": "^1.0.0",
     "validate.io-string-array": "^1.0.0",
