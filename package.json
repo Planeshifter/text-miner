@@ -28,6 +28,7 @@
     "natural": "~0.4.0",
     "underscore": "~1.8.2",
     "underscore.string": "^3.2.2",
+    "utils-define-read-only-property": "^1.0.0",
     "validate.io-array-like": "^1.0.1",
     "validate.io-boolean-primitive": "^1.0.0",
     "validate.io-object": "^1.0.4",
