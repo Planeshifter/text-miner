@@ -39,7 +39,6 @@ where `[]` is an array of text documents which form the data of the corpus. The 
 my_corpus
 	.trim()
 	.toLower()
-	.inspect();
 ```
 
 The following methods and properties are part of the Corpus class:
@@ -56,10 +55,6 @@ Adds a collection of documents (in form of an array of strings) to the corpus.
 
 #### `.clean()`
 Strips extra whitespace from all documents, leaving only at most one whitespace between any two other characters.
-
-#### `.inspect(truncLength)`
-Displays the contents of all documents. The optional parameter `trunLength` determines after how many characters a document
-is truncated.
 
 #### `.map(fun)`
 Applies the function supplied to `fun` to each document in the corpus and maps each document to the result of its respective
