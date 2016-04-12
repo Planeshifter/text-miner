@@ -79,7 +79,7 @@ the *text-miner* package ships with a list of stopwords for different languages.
 
 Currently, stopwords for the following languages are included:
 
-```
+``` javascript
 STOPWORDS.DE
 STOPWORDS.EN
 STOPWORDS.ES
@@ -88,8 +88,8 @@ STOPWORDS.IT
 
 As a concrete example, we could remove all english stopwords from corpus `my_corpus` as follows:
 
-```
-my_corpus.removeWords(tm.STOPWORDS.EN)
+``` javascript
+my_corpus.removeWords( tm.STOPWORDS.EN )
 ```
 
 The second (optional) parameter of the function `case_sensitive` expects a Boolean indicating whether to ignore cases or not.
@@ -163,12 +163,12 @@ Turn the document-term matrix `dtm` into a non-sparse matrix by replacing each v
 
 The module exports several other utility functions.
 
-### `.expandContractions( str )`
+#### `.expandContractions( str )`
 
 Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to
 "do not". The resulting string is returned.
 
-### `.weightTfIdf( terms )`
+#### `.weightTfIdf( terms )`
 
 Weights document-term or term-document matrix `terms` by term frequency - inverse document frequency. *Mutates* the input `DocumentTermMatrix` or `TermDocumentMatrix` object.
 
