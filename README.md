@@ -116,23 +116,23 @@ Converts all characters in the documents to upper-case.
 #### `.trim()`
 Strips off whitespace at the beginning and end of each document.
 
-## DocumentTermMatrix
+## DocumentTermMatrix / TermDocumentMatrix
 
-We can pass a corpus to the constructor `Terms` in order to create a document-term-matrix
+We can pass a corpus to the constructor `DocumentTermMatrix` in order to create a document-term-matrix or a term-document matrix. Objects derived from either share the same methods, but differ in how the underlying matrix is represented: A `DocumentTermMatrix` has documents on its rows and columns corresponding to words, whereas a `TermDocumentMatrix` has rows corresponding to words and columns to documents.
 
 ``` javascript
 var terms = new tm.DocumentTermMatrix( my_corpus );
 ```
 
-An instance of `DocumentTermMatrix` has the following properties:
+An instance of either `DocumentTermMatrix` or `TermDocumentMatrix` has the following properties:
 
 ### Properties
 
 #### `.vocabulary`
 An array holding all the words occuring in the corpus, in order corresponding to the column entries of the document-term matrix.
 
-#### `.dtm`
-The document-term matrix, implemented as a nested array in JavaScript. Rows correspond to individual documents, while each column index corresponds to the respective word in `vocabulary`. Each entry of `dtm` holds the number of counts the word appears in the respective documents. The array is sparse, such that each entry which is undefined corresponds to a value of zero.
+#### `.data`
+The document-term or term-document matrix, implemented as a nested array in JavaScript. Rows correspond to individual documents, while each column index corresponds to the respective word in `vocabulary`. Each entry of `data` holds the number of counts the word appears in the respective documents. The array is sparse, such that each entry which is undefined corresponds to a value of zero.
 
 #### `.nDocs`
 The number of documents in the term matrix
