@@ -116,25 +116,23 @@ Converts all characters in the documents to upper-case.
 #### `.trim()`
 Strips off whitespace at the beginning and end of each document.
 
-## Terms
+## DocumentTermMatrix
 
-We can pass a corpus to the constructor `Terms` in order to create a term-document-matrix
+We can pass a corpus to the constructor `Terms` in order to create a document-term-matrix
 
+``` javascript
+var terms = new tm.DocumentTermMatrix( my_corpus );
 ```
-var terms = new tm.Terms(my_corpus);
-```
 
-An instance of `Terms` has the following properties:
+An instance of `DocumentTermMatrix` has the following properties:
 
 ### Properties
 
 #### `.vocabulary`
-An array holding all the words occuring in the corpus, in order corresponding to the row entries of the document-term matrix.
+An array holding all the words occuring in the corpus, in order corresponding to the column entries of the document-term matrix.
 
 #### `.dtm`
-The document-term matrix, implemented as a nested array in JavaScript. Columns correspond to individual documents, while each row index
-corresponds to the respective word in `vocabulary`. Each entry of `dtm` holds the number of counts the word appears in the respective documents. The array
-is sparse, such that each entry which is undefined corresponds to a value of zero.
+The document-term matrix, implemented as a nested array in JavaScript. Rows correspond to individual documents, while each column index corresponds to the respective word in `vocabulary`. Each entry of `dtm` holds the number of counts the word appears in the respective documents. The array is sparse, such that each entry which is undefined corresponds to a value of zero.
 
 #### `.nDocs`
 The number of documents in the term matrix
@@ -144,16 +142,16 @@ The number of distinct words appearing in the documents
 
 ### Methods
 
-#### `.findFreqTerms(n)`
+#### `.findFreqTerms( n )`
 
 Returns all terms in alphabetical ordering which appear `n` or more times in the corpus. The return value is an array of objects of the form
 `{word: "<word>", count: <number>}`.
 
-#### `.removeSparseTerms(percent)`
+#### `.removeSparseTerms( percent )`
 
 Remove all words from the document-term matrix which appear in less than `percent` of the documents.
 
-#### `.weighting(fun)`
+#### `.weighting( fun )`
 
 Apply a weighting scheme to the entries of the document-term matrix. The `weighting` method expects a function as its argument, which is then applied to each entry of the document-term matrix. Currently, the function `weightTfIdf`, which calculates the term-frequency inverse-document-frequency (TfIdf) for each word, is the only built-in weighting function.  
 
@@ -163,12 +161,16 @@ Turn the document-term matrix `dtm` into a non-sparse matrix by replacing each v
 
 ## Utils
 
-Namespace object which bundles several other utility functions.
+The module exports several other utility functions.
 
-### `.expandContractions(str)`
+### `.expandContractions( str )`
 
 Replaces all occuring English contractions by their expanded equivalents, e.g. "don't" is changed to
 "do not". The resulting string is returned.
+
+### `.weightTfIdf( terms )`
+
+Weights document-term or term-document matrix `terms` by term frequency - inverse document frequency. *Mutates* the input `DocumentTermMatrix` or `TermDocumentMatrix` object.
 
 ## Unit Tests
 
