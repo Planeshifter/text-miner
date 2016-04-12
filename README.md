@@ -5,7 +5,6 @@
 
 text-miner
 ==========
-
 > text mining utilities for node.js
 
 # Introduction
@@ -171,6 +170,42 @@ Replaces all occuring English contractions by their expanded equivalents, e.g. "
 #### `.weightTfIdf( terms )`
 
 Weights document-term or term-document matrix `terms` by term frequency - inverse document frequency. *Mutates* the input `DocumentTermMatrix` or `TermDocumentMatrix` object.
+
+## Data
+
+#### .STOPWORDS
+
+An object with four keys: `DE`, `EN`, `ES` and `IT`, each of which is an `array` of stopwords for the German, English, Spanish and Italian language, respectively.
+
+``` javascript
+{
+	"EN": [
+		"a",
+		"a's",
+		"able",
+		"about",
+		"above",
+		// (...)  
+	],
+	"DE": [
+		// (...)
+	],
+	// (...)
+}
+```
+
+#### .CONTRACTIONS
+
+The keys of the `CONTRACTIONS` object are the contracted expressions and the corresponding values are `arrays` of the possible expansions.
+
+``` javascript
+{
+	"ain't": ["am not", "are not", "is not", "has not","have not"],
+	"aren't": ["are no", "am not"],
+	"can't": ["cannot"],
+	// (...)
+}
+```
 
 ## Unit Tests
 
