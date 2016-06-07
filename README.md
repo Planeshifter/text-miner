@@ -1,6 +1,6 @@
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
+[![Coverage Status][codecov-image]][codecov-url]
 [![Dependencies][dependencies-image]][dependencies-url]
 
 text-miner
@@ -217,8 +217,8 @@ Run tests via the command `npm test`
 [travis-image]: https://travis-ci.org/Planeshifter/text-miner.svg
 [travis-url]: https://travis-ci.org/Planeshifter/text-miner
 
-[coveralls-image]: https://img.shields.io/coveralls/Planeshifter/text-miner/master.svg
-[coveralls-url]: https://coveralls.io/r/Planeshifter/text-miner?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/Planeshifter/text-miner/master.svg
+[codecov-url]: https://codecov.io/github/Planeshifter/text-miner?branch=master
 
 [dependencies-image]: http://img.shields.io/david/Planeshifter/text-miner.svg
 [dependencies-url]: https://david-dm.org/Planeshifter/text-miner
