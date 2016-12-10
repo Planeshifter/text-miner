@@ -28,8 +28,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lancaster-stemmer": "^0.1.4",
-    "stemmer": "^0.1.4",
+    "lancaster-stemmer": "^1.0.0",
+    "stemmer": "^1.0.0",
     "underscore": "~1.8.2",
     "underscore.string": "^3.2.2",
     "utils-define-read-only-property": "^1.0.0",
