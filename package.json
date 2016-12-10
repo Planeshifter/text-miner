@@ -8,9 +8,12 @@
   "description": "text mining utilities",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "test-cov": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
-    "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coveralls"
+    "test": "if [ \"${TRAVIS}\" ]; then npm run test-ci; else npm run test-local; fi",
+    "test-local": "tape \"./test/*.js\" | tap-spec",
+    "test-ci": "npm run test-local && xvfb-run npm run test-browsers",
+    "test-cov": "istanbul cover --dir ./reports/coverage --report lcov tape -- \"./test/*.js\"",
+    "test-browsers": "browserify ./test/*.js | testling | tap-spec",
+    "coverage": "istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- \"./test/*.js\" && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
   },
   "keywords": [
     "text-mining",
@@ -25,7 +28,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "natural": "~0.4.0",
+    "lancaster-stemmer": "^0.1.4",
+    "stemmer": "^0.1.4",
     "underscore": "~1.8.2",
     "underscore.string": "^3.2.2",
     "utils-define-read-only-property": "^1.0.0",
@@ -37,12 +41,16 @@
     "validate.io-string-primitive": "^1.0.0"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
     "chai": "3.x.x",
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.8",
+    "chai-as-promised": "^5.0.0",
+    "codecov": "^1.0.1",
+    "istanbul": "^0.4.1",
     "jshint": "^2.6.3",
     "jshint-stylish": "2.x.x",
     "mocha": "^2.1.0",
-    "chai-as-promised": "^5.0.0"
+    "tap-spec": "^4.1.1",
+    "tape": "^4.5.1",
+    "testling": "^1.7.1"
   }
 }
