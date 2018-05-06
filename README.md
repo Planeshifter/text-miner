@@ -67,7 +67,7 @@ Removes interpunctuation characters (! ? . , ; -) from all documents.
 #### `.removeNewlines()`
 Removes newline characters (\n) from all documents.
 
-#### `.removeWords(words[, case_sensitive])`
+#### `.removeWords(words[, case_insensitive])`
 Removes all words in the supplied `words` array from all documents. This function is usually invoked to remove stopwords. For convenience,
 the *text-miner* package ships with a list of stopwords for different languages. These are stored in the
 `STOPWORDS` object of the module.
@@ -87,7 +87,7 @@ As a concrete example, we could remove all english stopwords from corpus `my_cor
 my_corpus.removeWords( tm.STOPWORDS.EN )
 ```
 
-The second (optional) parameter of the function `case_sensitive` expects a Boolean indicating whether to ignore cases or not.
+The second (optional) parameter of the function `case_insensitive` expects a Boolean indicating whether to ignore cases or not.
 The default value is `false`.
 
 #### `.removeDigits()`
