@@ -86,6 +86,10 @@ pids
 *.asv
 *.mex*
 
+# Idea #
+##########
+.idea
+
 # Fortran #
 ###########
 *.mod
