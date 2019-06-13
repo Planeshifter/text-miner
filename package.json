@@ -12,7 +12,6 @@
     "test-local": "tape \"./test/*.js\" | tap-spec",
     "test-ci": "npm run test-local && xvfb-run npm run test-browsers",
     "test-cov": "istanbul cover --dir ./reports/coverage --report lcov tape -- \"./test/*.js\"",
-    "test-browsers": "browserify ./test/*.js | testling | tap-spec",
     "coverage": "istanbul cover --dir ./reports/codecov/coverage --report lcovonly tape -- \"./test/*.js\" && cat ./reports/codecov/coverage/lcov.info | codecov && rm -rf ./reports/codecov"
   },
   "keywords": [
@@ -50,7 +49,6 @@
     "jshint-stylish": "2.x.x",
     "mocha": "^6.1.4",
     "tap-spec": "^5.0.0",
-    "tape": "^4.5.1",
-    "testling": "^1.7.1"
+    "tape": "^4.5.1"
   }
 }
