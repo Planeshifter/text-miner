@@ -30,7 +30,7 @@
   "dependencies": {
     "lancaster-stemmer": "^1.0.0",
     "stemmer": "^1.0.0",
-    "underscore": "~1.8.2",
+    "underscore": "~1.9.1",
     "underscore.string": "^3.2.2",
     "utils-define-read-only-property": "^1.0.0",
     "validate.io-array-like": "^1.0.1",
@@ -41,15 +41,15 @@
     "validate.io-string-primitive": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "^13.0.1",
-    "chai": "3.x.x",
-    "chai-as-promised": "^5.0.0",
-    "codecov": "^1.0.1",
+    "browserify": "^16.2.3",
+    "chai": "4.x.x",
+    "chai-as-promised": "^7.1.1",
+    "codecov": "^3.5.0",
     "istanbul": "^0.4.1",
     "jshint": "^2.6.3",
     "jshint-stylish": "2.x.x",
-    "mocha": "^2.1.0",
-    "tap-spec": "^4.1.1",
+    "mocha": "^6.1.4",
+    "tap-spec": "^5.0.0",
     "tape": "^4.5.1",
     "testling": "^1.7.1"
   }
