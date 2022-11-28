@@ -29,7 +29,7 @@
   "dependencies": {
     "lancaster-stemmer": "^1.0.0",
     "stemmer": "^1.0.0",
-    "underscore": "~1.9.1",
+    "underscore": "~1.13.6",
     "underscore.string": "^3.3.5",
     "utils-define-read-only-property": "^1.0.0",
     "validate.io-array-like": "^1.0.1",
