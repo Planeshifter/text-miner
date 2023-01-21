@@ -27,28 +27,28 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lancaster-stemmer": "^1.0.0",
-    "stemmer": "^1.0.0",
+    "lancaster-stemmer": "^1.0.5",
+    "stemmer": "^1.0.5",
     "underscore": "~1.13.6",
-    "underscore.string": "^3.3.5",
+    "underscore.string": "^3.3.6",
     "utils-define-read-only-property": "^1.0.0",
-    "validate.io-array-like": "^1.0.1",
+    "validate.io-array-like": "^1.0.2",
     "validate.io-boolean-primitive": "^1.0.0",
     "validate.io-object": "^1.0.4",
     "validate.io-object-array": "^1.0.0",
     "validate.io-string-array": "^1.0.0",
-    "validate.io-string-primitive": "^1.0.0"
+    "validate.io-string-primitive": "^1.0.1"
   },
   "devDependencies": {
-    "browserify": "^16.2.3",
+    "browserify": "^16.5.2",
     "chai": "4.x.x",
     "chai-as-promised": "^7.1.1",
-    "codecov": "^3.5.0",
-    "istanbul": "^0.4.1",
-    "jshint": "^2.6.3",
+    "codecov": "^3.8.3",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.13.6",
     "jshint-stylish": "2.x.x",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.3",
     "tap-spec": "^5.0.0",
-    "tape": "^4.5.1"
+    "tape": "^4.16.2"
   }
 }
