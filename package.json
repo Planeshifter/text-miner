@@ -41,12 +41,12 @@
   },
   "devDependencies": {
     "browserify": "^16.5.2",
-    "chai": "4.x.x",
+    "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "codecov": "^3.8.3",
     "istanbul": "^0.4.5",
     "jshint": "^2.13.6",
-    "jshint-stylish": "2.x.x",
+    "jshint-stylish": "^2.2.1",
     "mocha": "^6.2.3",
     "tap-spec": "^5.0.0",
     "tape": "^4.16.2"
